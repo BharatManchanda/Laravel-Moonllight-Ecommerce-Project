@@ -1,0 +1,101 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#tab {
+  border: 1px solid #ff6666;
+  border-radius: 5px;
+  margin: 40px;
+}
+
+.hr {
+  border-top: 1px solid gold;
+}
+
+h1 {
+  background-color: #ff6666;
+  padding: 15px;
+  text-align: center;
+  color: #fff;
+}
+
+.tab-btn {
+  margin-top: 20px;
+  text-align: center;
+}
+.tab-btn ul {
+  list-style: none;
+  color: #555;
+}
+.tab-btn ul li {
+  display: inline-block;
+  cursor: pointer;
+  padding: 14px 26px;
+}
+.tab-btn ul li:hover {
+  border-bottom: 2px solid #ff6666;
+}
+.tab-btn ul li.active {
+  border-bottom: 2px solid #ff6666;
+}
+
+.tab-content {
+  margin: 20px;
+  text-align: justify;
+}
+.tab-content > div {
+  visibility: hidden;
+  display: none;
+  opacity: 0;
+  padding: 25px;
+}
+.tab-content > div > ul {
+  padding-left: 40px;
+}
+.tab-content > div > ul > li {
+  font-size: 18px;
+  line-height: 24px;
+}
+.tab-content > div > ul > li b {
+  background-color: rgba(57, 43, 43, 0.147);
+  border-radius: 5px;
+  padding: 0px 5px;
+}
+.tab-content > div.active {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+.screen-shot-show {
+  display: flex;
+}
+.screen-shot-show > .screen-shot-show-inner {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid red;
+}
+.screen-shot-show > .screen-shot-show-inner > a {
+  overflow: hidden;
+  display: block;
+  height: 250px;
+  width: 350px;
+}
+.screen-shot-show > .screen-shot-show-inner > a > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.screen-shot-show > .screen-shot-show-inner > a > img:hover {
+  transform: scale(1.05);
+}
+.screen-shot-show > .screen-shot-show-inner > h3 {
+  text-align: center;
+}
+.screen-shot-show > .screen-shot-show-inner > h3 > .headTag {
+  color: #ff6666;
+}/*# sourceMappingURL=style.css.map */
