@@ -98,4 +98,14 @@ h1 {
 }
 .screen-shot-show > .screen-shot-show-inner > h3 > .headTag {
   color: #ff6666;
+}
+h3 {
+  width: 400px;
+}
+
+table, tr, th, td {
+  border-collapse: collapse;
+  border: 1px solid #000;
+  padding: 10px;
+  width: 400px;
 }/*# sourceMappingURL=style.css.map */
