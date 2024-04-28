@@ -40,42 +40,42 @@
 				<div class="aa-promo-area">
 					<div class="row">
 						@php
-						$n=1;
+							$n=1;
 						@endphp
 						@foreach($categories as $list)
-						@if($n==1)
-						<!-- promo left -->
-						<div class="col-md-5 no-padding">
-							<div class="aa-promo-left">
-								<div class="aa-promo-banner">
-									<img src="{{asset('Storage/categories/'.$list->category_image)}}" alt="img">
-									<div class="aa-prom-content">
-										<span>75% Off</span>
-										<h4><a href="#">For Women</a></h4>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- promo right -->
-						<div class="col-md-7 no-padding">
-							<div class="aa-promo-right">
-								@php
-									$n++;
-								@endphp
-								@elseif ( $n > 1 )
-								<div class="aa-single-promo-right">
+							@if($n==1)
+							<!-- promo left -->
+							<div class="col-md-5 no-padding">
+								<div class="aa-promo-left">
 									<div class="aa-promo-banner">
-										<img src="{{asset('storage/categories/'.$list->category_image)}}" alt="img">
+										<img src="{{asset('Storage/categories/'.$list->category_image)}}" alt="img">
 										<div class="aa-prom-content">
-											<span>Exclusive Item</span>
-											<h4><a href="#">For {{$list->category_name}}</a></h4>
+											<span>75% Off</span>
+											<h4><a href="#">For Women</a></h4>
 										</div>
 									</div>
 								</div>
-								@endif
-								@endforeach
 							</div>
-						</div>
+							<!-- promo right -->
+							<div class="col-md-7 no-padding">
+								<div class="aa-promo-right">
+									@php
+										$n++;
+									@endphp
+									@elseif ( $n > 1 )
+									<div class="aa-single-promo-right">
+										<div class="aa-promo-banner">
+											<img src="{{asset('storage/categories/'.$list->category_image)}}" alt="img">
+											<div class="aa-prom-content">
+												<span>Exclusive Item</span>
+												<h4><a href="#">For {{$list->category_name}}</a></h4>
+											</div>
+										</div>
+									</div>
+									@endif
+									@endforeach
+								</div>
+							</div>
 					</div>
 				</div>
 			</div>
@@ -99,42 +99,41 @@
 									$loopC=1;
 								@endphp
 								@foreach($categories as $val)
-								@php
-									$sta="";
-									if($loopC==1){
-									$sta="in active";
-									$loopC++;
-								}
-								@endphp
-								<li class="{{$sta}}"><a href="#cat_{{$val->id}}" data-toggle="tab">{{$val->category_name}}</a>
-								</li>
+									@php
+										$sta="";
+										if($loopC==1){
+											$sta="in active";
+											$loopC++;
+										}
+									@endphp
+									<li class="{{$sta}}"><a href="#cat_{{$val->id}}" data-toggle="tab">{{$val->category_name}}</a>
+									</li>
 								@endforeach
 							</ul>
 							<!-- Tab panes -->
 							<div class="tab-content">
 								<!-- Start men product category -->
 								@php
-								$loopC=1;
+									$loopC=1;
 								@endphp
 								@foreach($categories as $val)
-								@php
-								$sta="";
-								if($loopC==1){
-								$sta="in active";
-								$loopC++;
-								}
-								@endphp
-
-								<div class="tab-pane fade {{$sta}}" id="cat_{{$val->id}}">
+									@php
+										$sta="";
+										if($loopC==1){
+											$sta="in active";
+											$loopC++;
+										}
+									@endphp
+									<div class="tab-pane fade {{$sta}}" id="cat_{{$val->id}}">
 									@if(isset($products[$val->id][0]))
-										<ul class="aa-product-catg">
-											@foreach($products[$val->id] as $data)
-												<li>
+										<ul class="aa-product-catg" style="width: 100%; margin:0px">
+											@foreach($products[$val->id] as $key => $data)
+												<li style="{{ $key % 4 == 0 ? 'margin: 0px;' : '' }}">
 													<figure>
 														<a class="aa-product-img" href="{{url('product/'.$data->slug)}}"><img width="250px" height="300px" src="{{asset('storage/products/'.$data->image)}}" alt="polo shirt img"></a>
-
-														<a class="aa-add-card-btn" href="javascript:void(0)" onclick="home_cart({{$data->id}}, '{{$product_attrs[$data->id][0]->size}}', '{{$product_attrs[$data->id][0]->color}}')"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
-
+														<a class="aa-add-card-btn" href="javascript:void(0)" onclick="home_cart({{$data->id}}, '{{$product_attrs[$data->id][0]->size}}', '{{$product_attrs[$data->id][0]->color}}')">
+															<span class="fa fa-shopping-cart"></span>Add To Cart
+														</a>
 														<figcaption>
 															<h4 class="aa-product-title"><a href="#">{{substr($data->title,0,25)."..."}}</a></h4>
 															<span class="aa-product-price">₹ {{$product_attrs[$data->id][0]->price}}</span>
@@ -151,13 +150,17 @@
 												</li>
 											@endforeach
 										</ul>
-										<a class="aa-browse-btn" href="#">
-											Browse all Product <span class="fa fa-long-arrow-right"></span>
-										</a>
-									@else
-										<h3 class="text-center">No Product Found</h3>
-									@endif
-								</div>
+										@if (count($products[$val->id]) > 5)
+											<div style="margin-bottom: 20px; text-align: center;">
+												<a class="aa-browse-btn" href="#">
+													Browse all Product <span class="fa fa-long-arrow-right"></span>
+												</a>
+											</div>
+										@endif
+										@else
+											<h3 class="text-center">No Product Found</h3>
+										@endif
+									</div>
 								@endforeach
 							</div>
 						</div>
@@ -251,7 +254,9 @@
 			<div class="col-md-12">
 				<div class="row">
 					<div class="aa-banner-area">
-						<a href="#"><img src="{{asset('front_asset/img/fashion-banner.jpg')}}" alt="fashion banner img"></a>
+						<a href="#">
+							<img style="object-fit: cover; object-position: center center;" src="{{asset('front_asset/img/birthday-banner.jpg')}}" width="1170px" height="170px" alt="fashion banner img">
+						</a>
 					</div>
 				</div>
 			</div>
@@ -297,9 +302,11 @@
 										</li>
 									@endforeach
 								</ul>
-								<a class="aa-browse-btn" href="#">
-									Browse all Product <span class="fa fa-long-arrow-right"></span>
-								</a>
+								<div style="text-align: center;">
+									<a class="aa-browse-btn" href="#">
+										Browse all Product<span class="fa fa-long-arrow-right"></span>
+									</a>
+								</div>
 							</div>
 
 							<!-- start featured product category -->
