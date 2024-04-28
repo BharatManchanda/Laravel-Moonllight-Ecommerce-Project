@@ -19,9 +19,9 @@ class ProductController extends Controller
         
         return view('admin.product')->with(['data'=>product::all()]);
     }
-    public function manage_product(Request $req,$id='')
-    {   
-        if($id==''){
+    public function manage_product(Request $request, $id='')
+    {
+        if($id == ''){
             $send['product_id']=$id;
             $send['category_id']='';
             $send['title']='';
@@ -108,20 +108,21 @@ class ProductController extends Controller
 
     public function manage_product_process(Request $req)
     {
-        // Protduct Attribute...
         if($req->input('id')){
             $val="mimes:jpg,png,jpeg";
         }
         else{
             $val="required|mimes:jpg,png,jpeg";
         }
+
         $req->validate([
-            "title"=>"required",
-            "slug"=>"required|unique:products,slug,".$req->input('id'),
-            "brand"=>"required",
-            "image"=>$val,
-            "category_id"=>"required",
+            "title" => "required",
+            "slug" => "required|unique:products,slug,".$req->input('id'),
+            "brand" => "required",
+            "image" => $val,
+            "category_id" => "required",
         ]);
+
         if($req->input('id')){
             $id=$req->input('id');
             $update=product::find($req->input('id'));
@@ -299,22 +300,22 @@ class ProductController extends Controller
             foreach($skuArr as $key => $val){
                 $size = isset($sizeArr['$key']) ? $sizeArr['$key'] : null;
                 $color = isset($colorArr['$key']) ? $colorArr['$key'] : null;
-                $ran=rand(0,999999999);
+                $ran = rand(0, 999999999);
                 if($req->hasFile("attr_img.$key")){
-                    $imgArr=$req->file("attr_img.$key");
-                    $ext=$imgArr->extension();
+                    $imgArr = $req->file("attr_img.$key");
+                    $ext = $imgArr->extension();
                     $img_name=$ran.".".$ext;
                     $imgArr->storeAs('public/products',$img_name);
                 }
                 DB::table('product_attrs')->insert(array(
-                    "product_id"=>$id,
-                    "sku"=>$skuArr[$key],
-                    "mrp"=>$mrpArr[$key],
-                    "price"=>$priceArr[$key],
-                    "size"=>$size,
-                    "quantity"=>$quantityArr[$key],
-                    "color_id"=>$color,
-                    "attr_img"=>$img_name
+                    "product_id" => $id,
+                    "sku" => $skuArr[$key],
+                    "mrp" => $mrpArr[$key],
+                    "price" => $priceArr[$key],
+                    "size" => $size,
+                    "quantity" => $quantityArr[$key],
+                    "color_id" => $color,
+                    "attr_img" => $img_name
                 ));
             }
 
@@ -328,8 +329,8 @@ class ProductController extends Controller
                     $img_name=$ran.".".$ext;
                     $proImgArr->storeAs('public/products',$img_name);
                     DB::table('product_images')->insert(array(
-                        'product_id'=>$id,
-                        'product_images'=>$img_name
+                        'product_id' => $id,
+                        'product_images' => $img_name
                     ));
                 }
             }

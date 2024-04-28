@@ -15,10 +15,12 @@ class frontController extends Controller
         $result['categories']=DB::table("categories")->where(['is_homepage'=>1])->where(['category_status'=>1])->take(5)->get();
 
         foreach ($result['categories'] as $list) {
+
             $result['products'][$list->id]=DB::table("Products")
                 ->where(["product_status"=>1])
                 ->where(["category_id"=>$list->id])
                 ->get();
+
                 foreach ($result['products'][$list->id] as $li) {
                     $result['product_attrs'][$li->id]=DB::table("product_attrs")
                         ->leftJoin("sizes","sizes.id","=","product_attrs.size")

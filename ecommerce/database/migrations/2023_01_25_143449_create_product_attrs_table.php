@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('product_attrs', function (Blueprint $table) {
             $table->id();
             $table->integer('product_id');
-            $table->string('sku');
+            $table->string('sku')->nullable();
             $table->integer('mrp');
             $table->integer('price');
-            $table->integer('size');
-            $table->integer('quantity');
-            $table->integer('color_id');
-            $table->string('attr_img');
+            $table->integer('size')->nullable();
+            $table->integer('quantity')->nullable();
+            $table->integer('color_id')->nullable();
+            $table->string('attr_img')->nullable();
             $table->timestamps();
         });
     }

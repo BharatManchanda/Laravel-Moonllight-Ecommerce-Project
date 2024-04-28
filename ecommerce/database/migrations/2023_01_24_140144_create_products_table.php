@@ -27,12 +27,12 @@ return new class extends Migration
             $table->longText('technical_specification')->nullable();
             $table->longText('uses')->nullable();
             $table->longText('warranty')->nullable();
-            $table->integer('tax_id')->nullable(0);
-            $table->integer('is_promo')->nullable(0);
-            $table->integer('is_featured')->nullable(0);
-            $table->integer('is_discounted')->nullable(0);
-            $table->integer('is_tranding')->nullable(0);
-            $table->integer('product_status')->nullable(0);
+            $table->integer('tax_id')->nullable();
+            $table->integer('is_promo')->nullable();
+            $table->integer('is_featured')->nullable();
+            $table->integer('is_discounted')->nullable();
+            $table->integer('is_tranding')->nullable();
+            $table->integer('product_status')->nullable();
             $table->timestamps();
         });
     }

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\homebanner;
 use Illuminate\Http\Request;
-use Illuminate\Http\Support\Facades\DB;
-use Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class HomebannerController extends Controller
 {
