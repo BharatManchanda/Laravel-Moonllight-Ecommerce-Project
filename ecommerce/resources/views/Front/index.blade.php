@@ -6,7 +6,6 @@
 		<div id="sequence" class="seq">
 			<div class="seq-screen">
 				<ul class="seq-canvas">
-
 					<!-- single slide item -->
 					@foreach($homebanner as $val)
 					<li>
@@ -38,6 +37,9 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="aa-promo-area">
+					<h2 style="font-weight: bold;">
+						Top Cake Category
+					</h2>
 					<div class="row">
 						@php
 							$n=1;
@@ -45,24 +47,24 @@
 						@foreach($categories as $list)
 							@if($n==1)
 							<!-- promo left -->
-							<div class="col-md-5 no-padding">
-								<div class="aa-promo-left">
-									<div class="aa-promo-banner">
-										<img src="{{asset('Storage/categories/'.$list->category_image)}}" alt="img">
-										<div class="aa-prom-content">
-											<span>75% Off</span>
-											<h4><a href="#">For Women</a></h4>
-										</div>
+						<div class="col-md-5 no-padding">
+							<div class="aa-promo-left">
+								<div class="aa-promo-banner">
+									<img src="{{asset('Storage/categories/'.$list->category_image)}}" alt="img">
+									<div class="aa-prom-content">
+										<span>75% Off</span>
+										<h4><a href="#">For Women</a></h4>
 									</div>
 								</div>
 							</div>
-							<!-- promo right -->
-							<div class="col-md-7 no-padding">
-								<div class="aa-promo-right">
-									@php
-										$n++;
-									@endphp
-									@elseif ( $n > 1 )
+						</div>
+						<!-- promo right -->
+						<div class="col-md-7 no-padding">
+							<div class="aa-promo-right">
+								@php
+									$n++;
+								@endphp
+								@elseif ( $n > 1 )
 									<div class="aa-single-promo-right">
 										<div class="aa-promo-banner">
 											<img src="{{asset('storage/categories/'.$list->category_image)}}" alt="img">
@@ -72,10 +74,10 @@
 											</div>
 										</div>
 									</div>
-									@endif
-									@endforeach
-								</div>
+								@endif
+								@endforeach
 							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -128,14 +130,16 @@
 									@if(isset($products[$val->id][0]))
 										<ul class="aa-product-catg" style="width: 100%; margin:0px">
 											@foreach($products[$val->id] as $key => $data)
-												<li style="{{ $key % 4 == 0 ? 'margin: 0px;' : '' }}">
+												<li style="{{ $key % 4 == 0 ? 'margin: 0px; width:21%' : 'width:21%' }}">
 													<figure>
-														<a class="aa-product-img" href="{{url('product/'.$data->slug)}}"><img width="250px" height="300px" src="{{asset('storage/products/'.$data->image)}}" alt="polo shirt img"></a>
+														<a class="aa-product-img" href="{{url('product/'.$data->slug)}}">
+															<img width="250px" height="300px" src="{{asset('storage/products/'.$data->image)}}" alt="polo shirt img">
+														</a>
 														<a class="aa-add-card-btn" href="javascript:void(0)" onclick="home_cart({{$data->id}}, '{{$product_attrs[$data->id][0]->size}}', '{{$product_attrs[$data->id][0]->color}}')">
 															<span class="fa fa-shopping-cart"></span>Add To Cart
 														</a>
 														<figcaption>
-															<h4 class="aa-product-title"><a href="#">{{substr($data->title,0,25)."..."}}</a></h4>
+															<h4 class="aa-product-title"><a href="#">{{substr($data->title, 0, 40)."..."}}</a></h4>
 															<span class="aa-product-price">₹ {{$product_attrs[$data->id][0]->price}}</span>
 															<span class="aa-product-price"><del>₹ {{$product_attrs[$data->id][0]->mrp}}</del></span>
 														</figcaption>
@@ -285,17 +289,31 @@
 									@foreach($trending_products as $val)
 										<li>
 											<figure>
-												<a class="aa-product-img" href="{{url('product/'.$val->slug)}}"><img width="250px" height="300px" src="{{asset('storage/products/'.$val->image)}}" alt="polo shirt img"></a>
-												<a class="aa-add-card-btn" href="javascript:void(0)" onclick="home_cart({{$val->id}},'{{$trending_product_attrs[$val->id][0]->size}}','{{$trending_product_attrs[$val->id][0]->color}}')"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+												<a class="aa-product-img" href="{{url('product/'.$val->slug)}}">
+													<img width="250px" height="300px" src="{{asset('storage/products/'.$val->image)}}" alt="polo shirt img">
+												</a>
+												<a class="aa-add-card-btn" href="javascript:void(0)" onclick="home_cart({{$val->id}},'{{$trending_product_attrs[$val->id][0]->size}}','{{$trending_product_attrs[$val->id][0]->color}}')">
+													<span class="fa fa-shopping-cart"></span>Add To Cart
+												</a>
 												<figcaption>
-													<h4 class="aa-product-title"><a href="#">{{$val->title}}</a></h4>
+													<h4 class="aa-product-title">
+														<a href="#">
+															{{substr($val->title, 0, 45)."..."}}
+														</a>
+													</h4>
 													<span class="aa-product-price">₹ {{$trending_product_attrs[$val->id][0]->price}}</span><span class="aa-product-price"><del>₹ {{$trending_product_attrs[$val->id][0]->mrp}}</del></span>
 												</figcaption>
 											</figure>
 											<div class="aa-product-hvr-content">
-												<a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-												<a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
-												<a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+												<a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist">
+													<span class="fa fa-heart-o"></span>
+												</a>
+												<a href="#" data-toggle="tooltip" data-placement="top" title="Compare">
+													<span class="fa fa-exchange"></span>
+												</a>
+												<a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal">
+													<span class="fa fa-search"></span>
+												</a>
 											</div>
 											<!-- product badge -->
 											<span class="aa-badge aa-sale" href="#">SALE!</span>
@@ -313,7 +331,7 @@
 							<div class="tab-pane fade" id="featured">
 								<ul class="aa-product-catg aa-featured-slider">
 									@foreach($featured_products as $val)
-										<li>
+										<li style="height: 500px;">
 											<figure>
 												<a class="aa-product-img" href="#"><img width="250px" height="300px" src="{{asset('storage/products/'.$val->image)}}" alt="polo shirt img"></a>
 												<a class="aa-add-card-btn" href="javascript:void(0)" onclick="home_cart({{$val->id}},'{{$featured_product_attrs[$val->id][0]->size}}','{{$featured_product_attrs[$val->id][0]->color}}')"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
@@ -341,7 +359,7 @@
 							<div class="tab-pane fade" id="latest">
 								<ul class="aa-product-catg aa-latest-slider">
 									@foreach($lastest_products as $val)
-										<li>
+										<li style="height: 500px;">
 											<figure>
 												<a class="aa-product-img" href="#"><img width="250px" height="300px" src="{{asset('storage/products/'.$val->image)}}" alt="polo shirt img"></a>
 												<a class="aa-add-card-btn" href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
@@ -414,7 +432,11 @@
 				<div class="aa-client-brand-area">
 					<ul class="aa-client-brand-slider">
 						@foreach($brand as $val)
-						<li><a href="#"><img width="250px" height="40px" src="{{asset('storage/brand/'.$val->brand_image)}}" alt="java img"></a></li>
+							<li>
+								<a href="#">
+									<img width="250px" height="100px" style="object-fit: cover; object-position:center center" src="{{asset('storage/brand/'.$val->brand_image)}}" alt="java img" />
+								</a>
+							</li>
 						@endforeach
 					</ul>
 				</div>
